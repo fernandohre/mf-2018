@@ -1,1 +1,2 @@
-  
+##Tópicos:
+- (a) Infraestrutura...  
