@@ -1,4 +1,22 @@
-# Comandos
-- mkdir aula-2 (Cria a pasta aula-2 através da linha de comando)
-- cd /mnt/c/mf-2018 (Navega até a pasta mf-2018 que está nos diretório específicados no comando)
+# Comandos básicos
+- pwd (Existe o diretório corrente de trabalho)
+- mkdir novo-diretorio
+- cd novo-dir
+- rm nome-arquivo (Remove um arquivo)
+- rm -fr diretorio (Remove um diretorio)
+- ls (Lista o conteúdo do diretório corrente)
+- ls -l (Lista o conteúdo do diretório corrente com detalhes)
+- ls -lt (Lista o conteúdo do diretório pela data de alteração)
+- cp <arquivo> <nome_da_copia> (Realiza a cópia de diretórios e arquivos)
+- scp <arquivo> user@servidor:/home/diretorio/destino (Cópia segura entre computadores distintos)
+- less <arquivo> (Exibe o conteúdo de um arquivo de texto)
+- tail -f /var/log/system.log (Acompanha as linhas acrescentadas em arquivos de log)
+- find . -name index.html (Entra em um determinado arquivo no diretório corrente ou subdiretórios)
+- find src -name *.java (Busca todos os arquivos em um diretório src com sufixo .java)
+- export MEU_NOME=Estudante (Define uma variável de ambiente)
+- echo $MEU_NOME (Exibe o valor da variável de ambiente especificada)
+- echo $? (Exibe o código de retorno do último aplicativo executado)
+- echo %errorlevel% (Exibe o código de retorno do último aplicativo executado no windows)
+- ssh <ip> (Logar em computador Remoto)
+- curl (requisita uma url)
 
