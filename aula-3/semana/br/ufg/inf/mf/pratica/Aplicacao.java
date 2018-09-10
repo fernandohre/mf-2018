@@ -1,4 +1,4 @@
-package br.ufg.inf.mf.pratica
+package br.ufg.inf.mf.pratica;
 import java.time.*;
 
 public class Aplicacao {
