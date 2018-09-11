@@ -10,7 +10,7 @@ public class Nome {
 		System.out.println(calendarioAtual
 		.getDisplayName(Calendar.DAY_OF_WEEK,
 		 		Calendar.LONG_STANDALONE, 
-				localAtual);
+				localAtual));
 	}
 
 }
