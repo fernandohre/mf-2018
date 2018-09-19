@@ -18,16 +18,21 @@ public class Aplicacao {
     private static BufferedReader _leitor;
     private static String _linha = "";
     private static String _separador = ";";
+    private static int NUM_LINHAS_IGNORADAS = 10;
+    private static int POSICAO_ESTADO = 9;
     public static void main(String[] args) {
-        
+        int contador = 0;
         try {
             _arquivo = new URL(_url);
             URLConnection conexao = _arquivo.openConnection();
             InputStreamReader entrada = new InputStreamReader(conexao.getInputStream());
             _leitor = new BufferedReader(entrada);
             while ((_linha = _leitor.readLine()) != null) {
+                if (contador < NUM_LINHAS_IGNORADAS) {
+                    continue;
+                }
                 String partes[] = _linha.split(_separador);
-                System.out.println(partes[0]);
+                System.out.println(partes[POSICAO_ESTADO]);
             }
              
         } catch (Exception ex) {
