@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URLConnection;
 import java.net.URL;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
@@ -29,15 +30,22 @@ public class Formatador {
     private static ZipInputStream _arquivoZipObtido;
     private static String _linha = "";
     private static String SEPARADOR = ";";
+    private static String nomeDoArquivo = "tbEstabelecimento201808.csv";
     public static void main(String args[]) {
         try {
             
             _arquivo = new URL(_urlFtp);
             
             _conexao = _arquivo.openConnection();
-            _arquivoZipObtido = (ZipInputStream) _conexao.getInputStream();
+            _arquivoZipObtido = new ZipInputStream(_conexao.getInputStream());
+            //Aqui é o primeiro arquivo
+            ZipEntry entry = _arquivoZipObtido.getNextEntry();
             _arquivoObtido = new InputStreamReader(_arquivoZipObtido);
             _leitorDeBuffer = new BufferedReader(_arquivoObtido);
+            //entry.getName()
+            //_arquivoZipObtido = (ZipInputStream) _conexao.getInputStream();
+            //_arquivoObtido = new InputStreamReader(_arquivoZipObtido);
+            //_leitorDeBuffer = new BufferedReader(_arquivoObtido);
             while ((_linha = _leitorDeBuffer.readLine()) != null) {
                 
             }
