@@ -31,6 +31,7 @@ public class Formatador {
     private static String _linha = "";
     private static String SEPARADOR = ";";
     private static String nomeDoArquivo = "tbEstabelecimento201808.csv";
+    private static ZipEntry arquivoCsvObtido;
     public static void main(String args[]) {
         try {
             
@@ -38,14 +39,16 @@ public class Formatador {
             
             _conexao = _arquivo.openConnection();
             _arquivoZipObtido = new ZipInputStream(_conexao.getInputStream());
-            //Aqui é o primeiro arquivo
-            ZipEntry entry = _arquivoZipObtido.getNextEntry();
-            _arquivoObtido = new InputStreamReader(_arquivoZipObtido);
-            _leitorDeBuffer = new BufferedReader(_arquivoObtido);
-            //entry.getName()
-            //_arquivoZipObtido = (ZipInputStream) _conexao.getInputStream();
-            //_arquivoObtido = new InputStreamReader(_arquivoZipObtido);
-            //_leitorDeBuffer = new BufferedReader(_arquivoObtido);
+            while ((arquivoCsvObtido = _arquivoZipObtido
+                                       .getNextEntry()) != null) {
+                if  (arquivoCsvObtido.getName()
+                                     .equalsIgnoreCase(nomeDoArquivo)) {
+                    _arquivoObtido = new InputStreamReader(_arquivoZipObtido);
+                    _leitorDeBuffer = new BufferedReader(_arquivoObtido);
+                    break;
+                }
+            
+            }
             while ((_linha = _leitorDeBuffer.readLine()) != null) {
                 
             }
