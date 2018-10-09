@@ -17,46 +17,51 @@ import java.util.Scanner;
 
 public class Aplicacao {
     
-    private static String _url = "http://repositorio.dados.gov.br/"
+    private static String url = "http://repositorio.dados.gov.br/"
             + "educacao/CADASTRO%20DAS%20IES_2011.csv";
-    private static URL _arquivo;
-    private static BufferedReader _leitor;
-    private static String _linha = "";
-    private static String _separador = ";";
+    private static URL arquivo;
+    private static BufferedReader leitor;
+    private static String linha = "";
+    private static String SEPARADOR = ";";
     private static int NUM_LINHAS_IGNORADAS = 10;
     private static int POSICAO_ESTADO = 9;
-    private static Scanner _leia = new Scanner(System.in);
+    private static Scanner leia = new Scanner(System.in);
     private static final HashMap dicionarioDeEstados = new HashMap<String, 
                                                                    Integer>();
     private static final Integer UNIVERSIDADE_ENCONTRADA = 1;
     public static void main(String[] args) {
         try {
-            String _urlFornecida = _leia.nextLine();
-            if (_urlFornecida.isEmpty()) {
-                _urlFornecida = _url;
+            String urlFornecida = leia.nextLine();
+            if (urlFornecida.isEmpty()) {
+                urlFornecida = url;
             }
-            _arquivo = new URL(_urlFornecida);
-            URLConnection conexao = _arquivo.openConnection();
+            arquivo = new URL(urlFornecida);
+            URLConnection conexao = arquivo.openConnection();
             InputStreamReader entrada = new InputStreamReader(conexao
                                                             .getInputStream());
-            _leitor = new BufferedReader(entrada);
+            leitor = new BufferedReader(entrada);
             int contador = 0;
             int numeroDeUniversidades = 0;
-            while ((_linha = _leitor.readLine()) != null) {
+            while ((linha = leitor.readLine()) != null) {
                 if (contador < NUM_LINHAS_IGNORADAS) {
                     contador++;
                     continue;
                 }
-                String partes[] = _linha.split(_separador);
-                
-                if (!dicionarioDeEstados.containsKey(partes[POSICAO_ESTADO])) {
-                    dicionarioDeEstados.put(partes[POSICAO_ESTADO], 
+                String partes[] = linha.split(SEPARADOR);
+                if (!(partes.length < POSICAO_ESTADO)) {
+                    if (!dicionarioDeEstados
+                            .containsKey(partes[POSICAO_ESTADO])) {
+                        dicionarioDeEstados.put(partes[POSICAO_ESTADO], 
                                             UNIVERSIDADE_ENCONTRADA);
-                }
-                int quantidadeDeUniversidades = (int) dicionarioDeEstados
+                    }
+                    int quantidadeDeUniversidades = (int) dicionarioDeEstados
                                                 .get(partes[POSICAO_ESTADO]);
-                dicionarioDeEstados.put(partes[POSICAO_ESTADO], 
+                    dicionarioDeEstados.put(partes[POSICAO_ESTADO], 
                                         quantidadeDeUniversidades + 1);
+                }
+                dicionarioDeEstados.forEach((chave, valor) -> { 
+                    System.out.println(chave + " " + valor);
+                });
             }
             
             
