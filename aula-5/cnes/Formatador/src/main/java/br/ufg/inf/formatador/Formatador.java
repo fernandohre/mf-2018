@@ -50,6 +50,7 @@ public class Formatador {
             
             }
             while ((_linha = _leitorDeBuffer.readLine()) != null) {
+                String[] partes = _linha.split(SEPARADOR);
                 
             }
         } catch (Exception e) {
