@@ -12,8 +12,37 @@ package br.ufg.inf.formatador;
  * @author Fernando Henrique Quicano Callata
  */
 public class EstabelecimentoDeSaude {
-    private int codigo;
-    private String razaoSocial;
-    private double latitude;
-    private double longitude;
+    /**
+     * Inicializando atributos da classe para evitar null pointer exception.
+     */
+    private String codigo = "";
+    private String razaoSocial = "";
+    private String latitude = "";
+    private String longitude = "";
+    
+    public EstabelecimentoDeSaude(String codigo, 
+                                  String razaoSocial, 
+                                  String latitude, 
+                                  String longitude) {
+        this.codigo = codigo;
+        this.razaoSocial = razaoSocial;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+    
+    public String obtenhaRazaoSocial() {
+        return this.razaoSocial;
+    }
+    
+    public String obtenhaCodigo() {
+        return this.codigo;
+    }
+    
+    public String obtenhaLatitude() {
+        return this.latitude;
+    }
+    
+    public String obtenhaLongitude() {
+        return this.longitude;
+    }
 }
