@@ -1,65 +1,120 @@
-CTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8"/>
 	<title>Estabelecimentos</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<style type="text/css">
-		.tg {
-		  border-collapse: collapse;
-		  table-layout: fixed;
-		}
 
-		.tg thead {
-		  background-color: #166eeb;
-		  display: block;
-		  width: 100%;
-		}
+	.tg {
+	  border-collapse: collapse;
+	  table-layout: fixed;
+	}
 
-		.tg tbody {
-		  height: 314px;
-		  width: 100%;
-		  display: block;
-		  overflow-y: auto;
-		  overflow-x: hidden;
-		}
+	.tg thead {
+	  background-color: #166eeb;
+	  display: block;
+	  width: 100%;
+	}
 
-		.tg td {
-		  padding: 10px 10px;
-		  overflow: hidden;
-		  border-bottom: 1px solid #ddd;
-		}
+	.tg tbody {
+	  height: 314px;
+	  width: 100%;
+	  display: block;
+	  overflow-y: auto;
+	  overflow-x: hidden;
+	}
 
-		.tg th {
-		  padding: 10px 0px 10px 10px;
-		  color: white;
-		}
+	.tg td {
+	  padding: 10px 10px;
+	  overflow: hidden;
+	  border-bottom: 1px solid #ddd;
+	}
 
-		.tg th:nth-child(2) {
-		  padding-left: 39px;
-		}
+	.tg th {
+	  padding: 10px 0px 10px 10px;
+	  color: white;
+	}
 
-		.tg tr:hover {
-		  background-color: #ddd;
-		}
+	.tg th:nth-child(2) {
+	  padding-left: 39px;
+	}
+
+	.tg tr:hover {
+	  background-color: #ddd;
+	}
+
+	.tg td, th {
+		width: 500px;
+		text-align: center;
+	}
+
 
 	</style>
 </head>
 <body>
 <!-- Conteúdo -->
-	<table class="tg">
-	  <thead>
-	    <tr>
-	      <th>CNES</th>
-	      <th>NOME</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <td>1234567</td>
-	      <td>Hospital Nossa Senhora da Aparecida de Santa Rita</td>
-	    </tr>
-	    
-	  </tbody>
+	<!--<div class="tabela">-->
+		<table class="tg">
+		  <thead>
+		    <tr>
+		      <th>CNES</th>
+		      <th>NOME</th>
+		    </tr>
+		  </thead>
+		  <tbody id="tabela" >
+		    
+		    <script type="text/javascript">
+		    	var indice = 0;
+		    	var tabela = document.getElementById("tabela");
+		    	tabela.addEventListener('scroll', function(event)
+				{
+				    var element = event.target;
+				    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+				        console.log('Está caindo aqui. Desceu o scroll');
+				        indice += 10;
+				        $.getJSON('estabelecimentos.json', function(data){
+				    		var tabela = document.getElementById("tabela");
+				    		for (var i = indice - 10; i < indice; i++) {
+				    			var linha = document.createElement("tr");
+				    			var colunaCodigo = document.createElement("td");
+				    			var colunaNome = document.createElement("td");
+
+				    			colunaCodigo.innerHTML = data[i].codigo;
+				    			colunaNome.innerHTML = data[i].razaoSocial;
+				    			
+				    			linha.appendChild(colunaCodigo);
+				    			linha.appendChild(colunaNome);
+				    			
+
+				    			tabela.appendChild(linha);
+				    		}
+				    	});
+				    }
+				});
+		    	//Para carregar a primeira vez
+		    	$.getJSON('estabelecimentos.json', function(data){
+		    		var tabela = document.getElementById("tabela");
+		    		for (indice = 0; indice < 10; indice++) {
+		    			var linha = document.createElement("tr");
+		    			var colunaCodigo = document.createElement("td");
+		    			var colunaNome = document.createElement("td");
+		    			
+
+		    			colunaCodigo.innerHTML = data[indice].codigo;
+		    			colunaNome.innerHTML = data[indice].razaoSocial;
+		    			
+		    			linha.appendChild(colunaCodigo);
+		    			linha.appendChild(colunaNome);
+		    			
+
+		    			tabela.appendChild(linha);
+		    		}
+		    	});
+		    </script>
+		  </tbody>
+	<!--</div>-->
+	
 </table>
 </body>
 </html>
