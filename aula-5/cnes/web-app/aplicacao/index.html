@@ -5,68 +5,132 @@
 	<title>Estabelecimentos</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<!-- Conteúdo -->
-	<!--<div class="tabela">-->
-		<table class="tg">
-		  <thead>
-		    <tr>
-		      <th>CNES</th>
-		      <th>NOME</th>
-		    </tr>
-		  </thead>
-		  <tbody id="tabela" >
-		  	<script type="text/javascript">
-		    	tabela.addEventListener('scroll', function(event)
-				{
-				    var element = event.target;
-				    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-				        console.log('Está caindo aqui. Desceu o scroll');
-				        indice += 10;
-				        $.getJSON('estabelecimentos.json', function(data){
-				    		var tabela = document.getElementById("tabela");
-				    		for (var i = indice - 10; i < indice; i++) {
-				    			var linha = document.createElement("tr");
-				    			var colunaCodigo = document.createElement("td");
-				    			var colunaNome = document.createElement("td");
+	<!-- Conteúdo -->
+	
+	<table class="tg">
+	  <thead>
+	    <tr>
+	      <th>CNES</th>
+	      <th>NOME</th>
+	    </tr>
+	  </thead>
+	  <tbody id="tabela" >
+	  	<script type="text/javascript">
 
-				    			colunaCodigo.innerHTML = data[i].codigo;
-				    			colunaNome.innerHTML = data[i].razaoSocial;
-				    			
-				    			linha.appendChild(colunaCodigo);
-				    			linha.appendChild(colunaNome);
-				    			
+	  		
+	  		function exibaNoMapa(latitude, longitude) {
+	  			if (!ehNumero(latitude) || !ehNumero(longitude)) {
+	  				alert("Estabelecimento não possui posição geográfica cadastrada!");
+	  				return;
+	  			}
+	  			var posicao = {lat: parseFloat(latitude), lng: parseFloat(longitude) };
+	  			var map = new google.maps.Map(
+  					document.getElementById('map'), 
+  					{
+  						zoom: 20, 
+  						center: posicao
+  					}
+  				);
+  				var marker = new google.maps.Marker(
+  					{
+  						position: posicao, 
+  						map: map
+  					}
+  				);
+	  		}
 
-				    			tabela.appendChild(linha);
-				    		}
-				    	});
-				    }
-				});
-		    	//Para carregar a primeira vez
-				$.getJSON('estabelecimentos.json', function(data){
-					var tabela = document.getElementById("tabela");
-					for (indice = 0; indice < 10; indice++) {
-						var linha = document.createElement("tr");
-						var colunaCodigo = document.createElement("td");
-						var colunaNome = document.createElement("td");
-						
+	  		function ehNumero(n) {
+			    return !isNaN(parseFloat(n)) && isFinite(n);
+			}
 
-						colunaCodigo.innerHTML = data[indice].codigo;
-						colunaNome.innerHTML = data[indice].razaoSocial;
-						
-						linha.appendChild(colunaCodigo);
-						linha.appendChild(colunaNome);
-						
+	    	tabela.addEventListener('scroll', function(event)
+			{
+			    var element = event.target;
+			    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+			        //console.log('Está caindo aqui. Desceu o scroll');
+			        indice += 10;
+			        $.getJSON('estabelecimentos.json', function(data){
+			        	var inputPesquisa = $("#inputPesquisa").val();
+						var dadosFiltrados = [];
+						$(data).each(function(indice, valor) {
+							if (valor.codigo == inputPesquisa || valor.razaoSocial == inputPesquisa) {
+								dadosFiltrados.push(valor);
+							}
+						});
+						console.log(dadosFiltrados);
+			        	console.log(data);
+			    		var tabela = document.getElementById("tabela");
+			    		for (var i = indice - 10; i < indice; i++) {
+			    			var linha = document.createElement("tr");
+							
+			    			var colunaCodigo = document.createElement("td");
+			    			var colunaNome = document.createElement("td");
 
-						tabela.appendChild(linha);
+			    			colunaCodigo.innerHTML = data[i].codigo;
+			    			colunaNome.innerHTML = data[i].razaoSocial;
+			    			
+			    			linha.appendChild(colunaCodigo);
+			    			linha.appendChild(colunaNome);
+			    			linha.onclick = function () {
+			    				//console.log("Deu Certo! lol");
+			    				exibaNoMapa(data[indice].latitude, data[indice].longitude);
+							};
+
+			    			tabela.appendChild(linha);
+			    		}
+			    	});
+			    }
+			});
+	    	//Para carregar a primeira vez
+			$.getJSON('estabelecimentos.json', function(data){
+				var inputPesquisa = $("#inputPesquisa").val();
+				var dadosFiltrados = [];
+				data.filter(function(valor) {
+					if (valor == inputPesquisa) {
+						dadosFiltrados.push(valor);
 					}
 				});
-		    </script>
-		  </tbody>
-	<!--</div>-->
-	
-</table>
+				console.log(dadosFiltrados);
+				var tabela = document.getElementById("tabela");
+				console.log(data);
+				for (indice = 0; indice < 10; indice++) {
+
+					var linha = document.createElement("tr");
+					var colunaCodigo = document.createElement("td");
+					var colunaNome = document.createElement("td");
+					
+
+					colunaCodigo.innerHTML = data[indice].codigo;
+					colunaNome.innerHTML = data[indice].razaoSocial;
+					
+					linha.appendChild(colunaCodigo);
+					linha.appendChild(colunaNome);
+					//linha.onclick = exibaNoMapa(data[indice].latitude, data[indice].longitude);
+					linha.onclick = function () {
+	    				exibaNoMapa(data[indice].latitude, data[indice].longitude);
+					};
+					tabela.appendChild(linha);
+				}
+			});
+	    </script>
+
+	    <script async defer
+	    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3im9cfnAIS67m7l_xi3fCFzZmr3_ibZg">
+	    </script>
+	  </tbody>
+	  <div id="pesquisa">
+	  	<nav class="navbar navbar-light bg-light">
+		  
+			<input id="inputPesquisa"class="form-control mr-sm-2" type="search" placeholder="Digite o Codigo CNES ou RazãoSocial" aria-label="Search">
+		  
+		</nav>
+	  </div>
+	  
+	  <div id="map"></div>
+	</table>
 </body>
 </html>
 
