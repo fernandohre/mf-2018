@@ -24,10 +24,10 @@ public class EstabelecimentoDeSaude {
                                   String razaoSocial, 
                                   String latitude, 
                                   String longitude) {
-        this.codigo = codigo;
-        this.razaoSocial = razaoSocial;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.codigo = codigo.replace("\"", "");
+        this.razaoSocial = razaoSocial.replace("\"", "");
+        this.latitude = latitude.replace("\"", "");
+        this.longitude = longitude.replace("\"", "");
     }
     
     public String obtenhaRazaoSocial() {

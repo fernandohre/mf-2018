@@ -35,7 +35,7 @@ public class EscritorArquivoJson {
         escritor = new FileWriter(diretorio + nomeArquivoJson);
         Gson gson = new Gson();
         String json = gson.toJson(lista);
-        escritor.write(json.replace("\\\"", ""));
+        escritor.write(json);
         escritor.close();
     }
     
