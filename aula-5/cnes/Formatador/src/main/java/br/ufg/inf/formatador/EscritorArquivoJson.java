@@ -19,7 +19,7 @@ import java.io.Writer;
 public class EscritorArquivoJson {
     private ListaDeEstabelecimentosDeSaude lista;
     private FileWriter escritor;
-    private static final String diretorio = "../web-app/";
+    private static final String diretorio = "../web-app/aplicacao/";
     public EscritorArquivoJson(ListaDeEstabelecimentosDeSaude lista) {
         this.lista = lista;
     }
