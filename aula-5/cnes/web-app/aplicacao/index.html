@@ -19,8 +19,8 @@
 	  </thead>
 	  <tbody id="tabela" >
 	  	<script type="text/javascript">
-
-	  		
+			
+			
 	  		function exibaNoMapa(latitude, longitude) {
 	  			if (!ehNumero(latitude) || !ehNumero(longitude)) {
 	  				alert("Estabelecimento não possui posição geográfica cadastrada!");
@@ -53,34 +53,29 @@
 			        //console.log('Está caindo aqui. Desceu o scroll');
 			        indice += 10;
 			        $.getJSON('estabelecimentos.json', function(data){
-			        	var inputPesquisa = $("#inputPesquisa").val();
-						var dadosFiltrados = [];
-						$(data).each(function(indice, valor) {
-							if (valor.codigo == inputPesquisa || valor.razaoSocial == inputPesquisa) {
-								dadosFiltrados.push(valor);
+			        	var inputPesquisa = $("#inputPesquisa");
+						if (!inputPesquisa.val()) {
+							var tabela = document.getElementById("tabela");
+							for (var i = indice - 10; i < indice; i++) {
+								var linha = document.createElement("tr");
+								
+								var colunaCodigo = document.createElement("td");
+								var colunaNome = document.createElement("td");
+
+								colunaCodigo.innerHTML = data[i].codigo;
+								colunaNome.innerHTML = data[i].razaoSocial;
+								
+								linha.appendChild(colunaCodigo);
+								linha.appendChild(colunaNome);
+								linha.onclick = function () {
+									//console.log("Deu Certo! lol");
+									exibaNoMapa(data[indice].latitude, data[indice].longitude);
+								};
+
+								tabela.appendChild(linha);
 							}
-						});
-						console.log(dadosFiltrados);
-			        	console.log(data);
-			    		var tabela = document.getElementById("tabela");
-			    		for (var i = indice - 10; i < indice; i++) {
-			    			var linha = document.createElement("tr");
-							
-			    			var colunaCodigo = document.createElement("td");
-			    			var colunaNome = document.createElement("td");
-
-			    			colunaCodigo.innerHTML = data[i].codigo;
-			    			colunaNome.innerHTML = data[i].razaoSocial;
-			    			
-			    			linha.appendChild(colunaCodigo);
-			    			linha.appendChild(colunaNome);
-			    			linha.onclick = function () {
-			    				//console.log("Deu Certo! lol");
-			    				exibaNoMapa(data[indice].latitude, data[indice].longitude);
-							};
-
-			    			tabela.appendChild(linha);
-			    		}
+						} 
+			    		
 			    	});
 			    }
 			});
@@ -115,6 +110,39 @@
 					tabela.appendChild(linha);
 				}
 			});
+			
+			function filtre(e) {
+				$("tbody tr").remove();
+				$.getJSON('estabelecimentos.json', function(data){
+					
+					var tabela = document.getElementById("tabela");
+					var dadosFiltrados = data.filter(x => x.codigo.startsWith(e.value) || x.razaoSocial.startsWith(e.value));
+					
+					
+					for (indice = 0; indice < 10; indice++) {
+
+						var linha = document.createElement("tr");
+						var colunaCodigo = document.createElement("td");
+						var colunaNome = document.createElement("td");
+						
+
+						colunaCodigo.innerHTML = dadosFiltrados[indice].codigo;
+						colunaNome.innerHTML = dadosFiltrados[indice].razaoSocial;
+						
+						linha.appendChild(colunaCodigo);
+						linha.appendChild(colunaNome);
+						//linha.onclick = exibaNoMapa(data[indice].latitude, data[indice].longitude);
+						linha.onclick = function () {
+							exibaNoMapa(dadosFiltrados[indice].latitude, dadosFiltrados[indice].longitude);
+						};
+						tabela.appendChild(linha);
+						
+						
+					}
+				});
+				console.log(e.value);
+			}
+	  		
 	    </script>
 
 	    <script async defer
@@ -124,7 +152,7 @@
 	  <div id="pesquisa">
 	  	<nav class="navbar navbar-light bg-light">
 		  
-			<input id="inputPesquisa"class="form-control mr-sm-2" type="search" placeholder="Digite o Codigo CNES ou RazãoSocial" aria-label="Search">
+			<input id="inputPesquisa"class="form-control mr-sm-2" onkeyup="filtre(this)" type="search" placeholder="Digite o Codigo CNES ou RazãoSocial" aria-label="Search">
 		  
 		</nav>
 	  </div>
