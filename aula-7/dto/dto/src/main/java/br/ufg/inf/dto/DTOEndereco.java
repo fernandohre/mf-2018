@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.ufg.inf.dto;
-
+import java.util.Date;
 /**
  *
  * @author ferna_000
@@ -20,8 +20,8 @@ public class DTOEndereco {
     private String caixaPostal;
     private long pais;
     private long tipo;
-    private DateTime dataInicial;
-    private DateTime dataInicialAcuracia;
-    private DateTime dataFinal;
-    private DateTime dataFinalAcuracia;
+    private Date dataInicial;
+    private Date dataInicialAcuracia;
+    private Date dataFinal;
+    private Date dataFinalAcuracia;
 }

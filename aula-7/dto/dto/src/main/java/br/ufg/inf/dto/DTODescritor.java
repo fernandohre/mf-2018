@@ -10,21 +10,39 @@ package br.ufg.inf.dto;
  * @author aluno
  */
 public class DTODescritor implements IDTODescritor {
-    private final String codigo;
-    private final String descricao;
+    private String codigo;
+    private String descricao;
     
-    public DTODescritor(String codigo, String descricao) {
+    public DTODescritor(String cod, String desc) {
+        codigo = cod;
+        descricao = desc;
+    }
+    
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
     @Override
     public String obtenhaCodigo() {
-        return this.codigo;
+        return codigo;
     }
-    
+
     @Override
     public String obtenhaDescricao() {
-        return this.descricao;
+        return descricao;
     }
+    
+    
 }

@@ -5,14 +5,15 @@
  */
 package br.ufg.inf.dto;
 
-/**
- *
- * @author ferna_000
- */
-public class DTOComunicacaoMeioUso extends DTODescritorAlternativo {
- 
-    public DTOComunicacaoMeioUso(String codigo, String descricao) {
-        super(codigo, descricao);
+
+public class DTOIndividuo {
+    private String id;
+
+    public String getId() {
+        return id;
     }
-    
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
