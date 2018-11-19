@@ -5,7 +5,9 @@
  */
 package br.ufg.inf.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "DTOComunicacaoMeioUso")
 public class DTOComunicacaoMeioUso extends DTODescritorAlternativo {
  
     public DTOComunicacaoMeioUso(String codigo, String descricao) {

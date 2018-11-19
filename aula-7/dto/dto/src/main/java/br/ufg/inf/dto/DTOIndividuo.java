@@ -5,7 +5,9 @@
  */
 package br.ufg.inf.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "DTOIndividuo")
 public class DTOIndividuo extends ParserJsonXML<DTOIndividuo> {
     private String id;
 

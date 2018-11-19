@@ -6,8 +6,9 @@
 package br.ufg.inf.dto;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
-
+@XmlRootElement(name = "DTOIdentificador")
 public class DTOIdentificador extends ParserJsonXML<DTOIdentificador> {
     private long id;
     private String individuo;

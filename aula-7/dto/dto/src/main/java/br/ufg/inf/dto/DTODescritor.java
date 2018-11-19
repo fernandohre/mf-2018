@@ -5,7 +5,9 @@
  */
 package br.ufg.inf.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "DTODescritor")
 public class DTODescritor<T> extends ParserJsonXML<T> implements IDTODescritor {
     private String codigo;
     private String descricao;

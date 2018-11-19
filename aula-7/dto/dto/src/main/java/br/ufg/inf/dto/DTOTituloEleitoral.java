@@ -5,10 +5,9 @@
  */
 package br.ufg.inf.dto;
 
-/**
- *
- * @author ferna_000
- */
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "DTOTituloEleitoral")
 public class DTOTituloEleitoral extends ParserJsonXML<DTOTituloEleitoral> {
     private String identificador;
     private int zona;

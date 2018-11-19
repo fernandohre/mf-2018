@@ -7,6 +7,8 @@
 package br.ufg.inf.dto;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement(name = "DTODadoDemografico")
 public class DTODadoDemografico extends ParserJsonXML<DTODadoDemografico> {
     private String individuo;
     private Date nascimento;

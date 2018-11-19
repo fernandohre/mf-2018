@@ -5,10 +5,9 @@
  */
 package br.ufg.inf.dto;
 
-/**
- *
- * @author ferna_000
- */
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "DTOCateiraDeTrabalho")
 public class DTOCateiraDeTrabalho extends ParserJsonXML<DTOCateiraDeTrabalho> {
     private String identificador;
     private int serie;

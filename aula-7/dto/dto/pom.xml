@@ -10,6 +10,34 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    
+    <organization>
+        <name>Instituto de Informática (UFG) - Fábrica de Software</name>
+        <url>http://www.inf.ufg.br</url>
+    </organization>
+
+    <inceptionYear>2016</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International (CC BY 4.0)</name>
+            <comments>A atribuição deve conter, explicitamente, a seguinte linha:
+                Copyright (c) 2016. Fábrica de Software - Instituto de Informática (UFG)
+            </comments>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>fernandohre</id>
+            <name>Fernando Callata</name>
+            <email>fernando@engsoftware.grad.ufg.br</email>
+            <organization>Instituto de Informática (UFG)</organization>
+            <organizationUrl>http://www.inf.ufg.br</organizationUrl>
+        </developer>
+    </developers>
+    
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>

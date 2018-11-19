@@ -5,7 +5,9 @@
  */
 package br.ufg.inf.dto;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "DTOMunicipio")
 public class DTOMunicipio extends ParserJsonXML<DTOMunicipio> {
     private long codigo;
     private String estado;
