@@ -9,7 +9,7 @@ package br.ufg.inf.dto;
  *
  * @author ferna_000
  */
-public class DTOTituloEleitoral {
+public class DTOTituloEleitoral extends ParserJsonXML<DTOTituloEleitoral> {
     private String identificador;
     private int zona;
     private int sessao;

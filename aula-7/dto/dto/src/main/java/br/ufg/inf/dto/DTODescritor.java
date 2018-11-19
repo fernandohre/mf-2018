@@ -5,11 +5,8 @@
  */
 package br.ufg.inf.dto;
 
-/**
- *
- * @author aluno
- */
-public class DTODescritor implements IDTODescritor {
+
+public class DTODescritor<T> extends ParserJsonXML<T> implements IDTODescritor {
     private String codigo;
     private String descricao;
     

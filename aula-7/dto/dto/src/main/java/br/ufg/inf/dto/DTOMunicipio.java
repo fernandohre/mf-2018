@@ -6,7 +6,7 @@
 package br.ufg.inf.dto;
 
 
-public class DTOMunicipio {
+public class DTOMunicipio extends ParserJsonXML<DTOMunicipio> {
     private long codigo;
     private String estado;
     private String municipio;

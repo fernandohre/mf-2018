@@ -6,7 +6,7 @@
 package br.ufg.inf.dto;
 
 
-public class DTOIndividuo {
+public class DTOIndividuo extends ParserJsonXML<DTOIndividuo> {
     private String id;
 
     public String getId() {

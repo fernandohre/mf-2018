@@ -6,9 +6,9 @@
 package br.ufg.inf.dto;
 import java.util.Date;
 
-public class DTOEndereco {
+public class DTOEndereco extends ParserJsonXML<DTOEndereco> {
     private String id;
-    private DTOIndividuo individuo;
+    private String individuo;
     private String bairro;
     private String distrito;
     private long municipio;
@@ -26,11 +26,11 @@ public class DTOEndereco {
         this.id = id;
     }
 
-    public DTOIndividuo getIndividuo() {
+    public String getIndividuo() {
         return individuo;
     }
 
-    public void setIndividuo(DTOIndividuo individuo) {
+    public void setIndividuo(String individuo) {
         this.individuo = individuo;
     }
 

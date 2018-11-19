@@ -8,9 +8,9 @@ package br.ufg.inf.dto;
 import java.util.Date;
 
 
-public class DTOIdentificador {
+public class DTOIdentificador extends ParserJsonXML<DTOIdentificador> {
     private long id;
-    private DTOIndividuo individuo;
+    private String individuo;
     private String designacao;
     private long area;
     private String emissor;
@@ -24,11 +24,11 @@ public class DTOIdentificador {
         this.id = id;
     }
 
-    public DTOIndividuo getIndividuo() {
+    public String getIndividuo() {
         return individuo;
     }
 
-    public void setIndividuo(DTOIndividuo individuo) {
+    public void setIndividuo(String individuo) {
         this.individuo = individuo;
     }
 

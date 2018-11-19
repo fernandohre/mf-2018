@@ -8,7 +8,7 @@ package br.ufg.inf.dto;
 import java.util.Date;
 
 
-public class DTOUtilizacao {
+public class DTOUtilizacao extends ParserJsonXML<DTOUtilizacao>{
     private String nome;
     private long codigoUso;
     private String identificador;

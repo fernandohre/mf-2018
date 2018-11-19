@@ -8,10 +8,50 @@ package br.ufg.inf.dto;
 import java.util.Date;
 
 
-public class DTOVinculo {
+public class DTOVinculo extends ParserJsonXML<DTOVinculo>{
     private String identificador;
-    private DTOIndividuo individuo;
+    private String individuo;
     private long relacionamento;
     private Date dataInicio;
     private Date dataFinal;
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public String getIndividuo() {
+        return individuo;
+    }
+
+    public void setIndividuo(String individuo) {
+        this.individuo = individuo;
+    }
+
+    public long getRelacionamento() {
+        return relacionamento;
+    }
+
+    public void setRelacionamento(long relacionamento) {
+        this.relacionamento = relacionamento;
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public Date getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
+    }
 }

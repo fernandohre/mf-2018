@@ -6,8 +6,12 @@
 package br.ufg.inf.dto;
 
 
-public class DTODescritorAlternativo extends DTODescritor {
+public class DTODescritorAlternativo extends DTODescritor<DTODescritorAlternativo> {
     private String alternativa;
+
+    public DTODescritorAlternativo(String cod, String desc) {
+        super(cod, desc);
+    }
 
     public String getAlternativa() {
         return alternativa;

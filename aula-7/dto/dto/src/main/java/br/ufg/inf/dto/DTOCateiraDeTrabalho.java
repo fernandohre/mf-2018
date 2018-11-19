@@ -9,7 +9,7 @@ package br.ufg.inf.dto;
  *
  * @author ferna_000
  */
-public class DTOCateiraDeTrabalho {
+public class DTOCateiraDeTrabalho extends ParserJsonXML<DTOCateiraDeTrabalho> {
     private String identificador;
     private int serie;
     private String estado;
