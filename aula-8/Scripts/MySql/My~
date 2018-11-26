@@ -1,6 +1,6 @@
-DROP DATABASE   IF     EXISTS loinc;
-CREATE DATABASE IF NOT EXISTS loinc;
-USE loinc;
+DROP DATABASE   IF     EXISTS loinc_database;
+CREATE DATABASE IF NOT EXISTS loinc_database;
+USE loinc_database;
 
 DROP  TABLE IF EXISTS SourceOrganization;
 CREATE TABLE SourceOrganization (
