@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.fernandohre.servicos;
+package br.ufg.inf.fernandohre.aplicacao;
 
-
-public interface IServicoGenerico {
+/**
+ *
+ * @author aluno
+ */
+public abstract class GerenciadorDeBancoDeDados {
     
 }
