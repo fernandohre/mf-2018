@@ -139,10 +139,10 @@
                 <version>1.1.10</version>
                 <configuration>
                     <targetClasses>
-                        <param>com.github.kyriosdata.exemplo.Calendario</param>
+                        <param>br.ufg.inf.fernandohre.aplicacao.Aplicacao</param>
                     </targetClasses>
                     <targetTests>
-                        <param>com.github.kyriosdata.exemplo.*</param>
+                        <param>br.ufg.inf.fernandohre.aplicacao.*</param>
                     </targetTests>
                 </configuration>
             </plugin>
@@ -193,7 +193,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>jars/</classpathPrefix>
-                            <mainClass>com.github.kyriosdata.exemplo.ProgramaCalendario</mainClass>
+                            <mainClass>br.ufg.inf.fernandohre.aplicacao.Aplicacao</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
